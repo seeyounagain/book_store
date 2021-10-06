@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<!-- 페이지 이동 방식 설정 -->
+	
+	<!-- 일반회원 or 비로그인 설정 -->
+	<definition name="baseLayout" template="/WEB-INF/views/template/base_template.jsp">
+		<put-attribute name="title" value="FINAL_SHOP"/>
+		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
+		<put-attribute name="body" value=""/>
+	</definition>
+		
+	
+	<!-- 관리자 로그인 시 template 변경 -->
+	<definition name="adminLayout" template="/WEB-INF/views/template/admin_template.jsp">
+		<put-attribute name="title" value="FINAL_SHOP"/>
+		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/template/admin_side.jsp"/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+	<!-- 메뉴 클릭 시 내용 페이지 변경 -->
+	<definition name="admin/*" extends="adminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp"/>
+	</definition>
+	
+	<!-- 메뉴 클릭 시 내용 페이지 변경 -->
+	<definition name="*/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

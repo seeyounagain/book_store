@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 프로젝트 시작 시 필요한 객체를 미리 만듦 -->
+   
+   <!-- 오라클과 연결 -->
+   <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+      <property name="username" value="MyDB"></property>
+      <property name="password" value="ORACLE"></property>
+   </bean>
+   
+   <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+       <constructor-arg ref="dataSourceSpied" />
+       <property name="logFormatter">
+           <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+               <property name="loggingType" value="MULTI_LINE" />
+               <property name="sqlPrefix" value="SQL:::" />
+           </bean>
+       </property>
+   </bean>
+   
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="configLocation" value="classpath:sql-map-config.xml"></property>
+      <property name="dataSource" ref="dataSource"></property>
+   </bean>
+   
+   <bean class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sqlSessionFactory"></constructor-arg>
+   </bean>
+	
+	<!-- 서비스 객체 xml 로 생성하는 방법 (잘 안씀) 이 방법은 서비스 파일이 100개라면 100개 다 작성해주어야 함 -->
+	<!-- <bean id="memberService" class="com.kh.board.service.MemberServiceImpl" /> -->
+	<!-- context 태그 사용시 네임스페이스에서 추가해야 사용가능 -->
+	<context:component-scan base-package="com.spring.shop.*.service" />
+	
+</beans>
