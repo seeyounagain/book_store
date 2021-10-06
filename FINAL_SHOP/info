@@ -6,6 +6,7 @@ css 부트스트랩 활용
 메뉴 관련 타일즈 활용
 
 sql 데이터
+- 상품카테고리 (category)
 - 상품 (item)
  -> 상품관련 이미지 (item_img)
 - 회원 (member)
