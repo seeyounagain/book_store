@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FINAL_SHOP</title>
-<script type="text/javascript" src="/resources/template/js/menu.js?ver=7" ></script>
+<script type="text/javascript" src="/resources/template/js/menu.js?ver=10" ></script>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 	      </div>
 	      <div class="modal-body">
 				<div class="form-floating mb-3">
-				  <input type="text" class="form-control" name="id" placeholder="id" required autofocus>
+				  <input type="text" class="form-control" name="id" placeholder="id" required>
 				  <label for="floatingInput">아이디</label>
 				</div>
 				<div class="form-floating mb-3">

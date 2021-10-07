@@ -1,6 +1,16 @@
 /* 페이지 로딩 후(jsp 내용 모두 실행) 실행 */
 	$(document).ready(function(){
 	
+		
+		var loginModal = document.getElementById('loginModal');
+		var id = document.getElementsByName('id');
+
+		loginModal.addEventListener('shown.bs.modal', function () {
+			
+			id.focus();
+		
+		});
+		
 		var loginModalEl = document.getElementById('loginModal');
 		
 		loginModalEl.addEventListener('hidden.bs.modal', function (event) {
@@ -8,7 +18,6 @@
   			$('.modal input[type!="button"]').val('');
   			
 		});
-		
 		
 	});
 

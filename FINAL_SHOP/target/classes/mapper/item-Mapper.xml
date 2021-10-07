@@ -9,22 +9,95 @@
 		<result column="CATE_NAME" 		property="cateName"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.shop.item.vo.ItemVO" id="item">
+		<id column="ITEM_CODE" 			property="itemCode"/>
+		<result column="ITEM_NAME" 		property="itemName"/>
+		<result column="ITEM_PRICE" 	property="itemPrice"/>
+		<result column="WRITER" 		property="writer"/>
+		<result column="PUBLISHER" 		property="publisher"/>
+		<result column="TRANSLATOR" 	property="translator"/>
+		<result column="PUB_DATE" 		property="pubDate"/>
+		<result column="ISBN" 			property="isbn"/>
+		<result column="PAGE" 			property="page"/>
+		<result column="REG_DATE" 		property="regDate"/>
+		<result column="CATE_CODE" 		property="cateCode"/>
+	</resultMap>
+	
+	<!-- 카테고리 등록 -->
 	<insert id="insertCategory">
 		INSERT INTO ITEM_CATEGORY (
 		    CATE_CODE
 		    , CATE_NAME
 		) VALUES (
-		    #{cateCode}
+		    (SELECT 'CATE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CATE_CODE,6,3))),0) + 1,3,0) FROM ITEM_CATEGORY)
 		    , #{cateName}
 		)
 	</insert>
 	
+	<!-- 카테고리 목록 조회 -->
 	<select id="selectCategoryList" resultMap="category">
 		SELECT
     		CATE_CODE
     		, CATE_NAME
 		FROM ITEM_CATEGORY
 		ORDER BY CATE_CODE
+	</select>
+	
+	<!-- 카테고리 삭제 -->
+	<delete id="deleteCategory">
+		DELETE ITEM_CATEGORY
+		WHERE CATE_CODE = #{cateCode}
+	</delete>	
+	
+	<!-- 카테고리 in 상품 삭제 -->
+	<delete id="deleteCategoryItem">
+		DELETE BOOK_ITEM
+		WHERE CATE_CODE = #{cateCode}
+	</delete>	
+	
+	<!-- 상품 등록 -->
+	<insert id="insertItem">
+		INSERT INTO BOOK_ITEM (
+		    ITEM_CODE
+		    , ITEM_NAME
+		    , ITEM_PRICE
+		    , WRITER
+		    , PUBLISHER
+			, TRANSLATOR
+			, PUB_DATE
+			, PAGE
+			, ISBN
+		    , CATE_CODE
+		) VALUES (
+		    (SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE,6,3))),0) + 1,3,0) FROM BOOK_ITEM)
+		    , #{itemName}
+		    , #{itemPrice}
+		    , #{writer}
+		    , #{publisher}
+		    , #{translator}
+		    , #{pubDate}
+		    , #{page}
+		    , #{isbn}
+		    , #{cateCode}
+		)
+	</insert>
+	
+	<!-- 상품 목록 조회 -->
+	<select id="selectItemList" resultMap="item">
+		SELECT
+    		ITEM_CODE
+    		, ITEM_NAME
+    		, ITEM_PRICE
+    		, WRITER
+    		, PUBLISHER
+    		, TRANSLATOR
+    		, (SELECT CATE_NAME FROM ITEM_CATEGORY WHERE CATE_CODE = I.CATE_CODE) AS CATE_CODE
+    		, REG_DATE
+    		, PUB_DATE
+			, PAGE
+			, ISBN
+		FROM BOOK_ITEM I
+		ORDER BY REG_DATE DESC
 	</select>
 	
 </mapper>		

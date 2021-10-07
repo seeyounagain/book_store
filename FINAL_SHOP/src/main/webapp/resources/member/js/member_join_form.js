@@ -17,6 +17,9 @@
 			var pw = $('#pw').val();
 			var checkPw = $('#checkPw').val();
 			
+			alert(pw);
+			alert(checkPw);
+			
 			if (pw != checkPw) {
 				
 				alert('비밀번호를 확인해주세요');
