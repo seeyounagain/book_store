@@ -5,23 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>FINAL_SHOP</title>
-<script type="text/javascript" src="/resources/member/js/member_join_form.js?ver=3" ></script>
-<style type="text/css">
-.btn-primary , .btn {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-.form-check-input:checked {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-</style>
+<script type="text/javascript" src="/resources/member/js/member_join_form.js?ver=4" ></script>
 </head>
 <body>
 
-<form class="row" action="/member/join" method="post">
+<form class="row g-0" action="/member/join" method="post" novalidate>
 	<h1 class="display-6 text-center">회원가입</h1>
-	<div class="row justify-content-center">
+	<hr>
+	<div class="row g-0 justify-content-center">
 		<div class="col-5">
 			<div class="col-12 pt-1">
 				<label for="name" class="form-label">이름</label>

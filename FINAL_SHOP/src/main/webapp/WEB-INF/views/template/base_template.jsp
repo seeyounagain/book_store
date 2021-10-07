@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
 <!-- reset css -->
-<link rel="stylesheet" href="/resources/common/css/reset.css?ver=6">
+<link rel="stylesheet" href="/resources/common/css/reset.css?ver=7">
 <!-- 제이쿼리 (부트스트랩 js 와 같은 문법을 사용하기 때문에 먼저 실행 되어야함) -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 부트스트랩 css -->
@@ -34,17 +34,27 @@ body {
 /* 컨테이너 크기 조정 */
 .container-fluid {
 	width: 90%;
+	padding-bottom: 5%;
 }
 .nav-link {
 	color: black;
 }
-.row {
-	--bs-gutter-x: 0;
+.btn-primary , .btn {
+	background-color: steelblue;
+	border-color: steelblue;
+}
+.form-check-input:checked {
+	background-color: steelblue;
+	border-color: steelblue;
+}
+.list-group-item.active {
+	background-color: steelblue;
+	border-color: steelblue;	
 }
 </style>
 </head>
 <body>
-	<div class="container-fluid pb-5">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col"><tiles:insertAttribute name="menu"/></div>
 		</div>

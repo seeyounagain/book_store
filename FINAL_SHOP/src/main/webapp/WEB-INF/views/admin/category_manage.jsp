@@ -6,20 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>FINAL_SHOP</title>
+<script type="text/javascript" src="/resources/admin/js/category_manage.js?ver=3" ></script>
 </head>
 <body>
-	<div class="row justify-content-center">
+	<div class="row pl-5 justify-content-center">
 		<div class="col-10">
-			<table class="table table-striped table-hover">
-					<tr>
-						<th scope="col">카테고리명</th>
-						<th scope="col"><input type="text"></th>
-						<th scope="col">분류번호</th>
-						<th scope="col"><input type="text"></th>
-						<th scope="col"><input type="button" class="btn btn-primary" value="추가"></th>
-					</tr>
-			</table>
+			<h1 class="display-6 mb-3 text-center">카테고리 관리</h1>
+			<hr class="mb-3">
 		</div>
+		<div class="col-5">
+			<form action="/admin/regCate" method="post">
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">카테고리명</span>
+				<input type="text" name="cateName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input class="btn btn-primary" id="insertCate" type="submit" value="추가">
+			</div>
+			</form>
+		</div>
+		
 		<div class="col-10">
 			<table class="table table-striped table-hover caption-top">
 				
@@ -30,28 +34,38 @@
 					<col width="10%">
 				</colgroup>
 				
-				<caption>${list.size() }건의 카테고리가 있습니다.</caption>
+				<caption>${list.size() }개의 카테고리가 있습니다.</caption>
 				
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">분류번호</th>
+						<th scope="col">카테고리코드</th>
 						<th scope="col">카테고리명</th>
 						<th scope="col">삭제</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="list" items="${list }" varStatus="index">
-						<tr>
-							<th scope="row">${index.count }</th>
-							<td>${list.cateCode }</td>
-							<td>${list.cateName }</td>
-							<td><input class="btn btn-primary" type="button" value="삭제"></td>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty list }">
+							<c:forEach var="list" items="${list }" varStatus="index">
+								<tr>
+									<th scope="row">${index.count }</th>
+									<td>${list.cateCode }</td>
+									<td>${list.cateName }</td>
+									<td><input class="btn btn-primary deleteBtn" type="button" value="삭제" data-code="${list.cateCode }"></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+								<tr style="text-align: center;">
+									<td colspan="4">카테고리를 추가해주세요.</td>
+								</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	
 </body>
 </html>

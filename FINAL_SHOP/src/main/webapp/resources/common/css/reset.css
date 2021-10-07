@@ -43,4 +43,12 @@ a {
 a:hover , button:hover {
 	cursor: pointer;
 }
+.btn-primary , .btn {
+	background-color: steelblue;
+	border-color: steelblue;
+}
+.form-check-input:checked {
+	background-color: steelblue;
+	border-color: steelblue;
+}
 
