@@ -15,6 +15,7 @@
 		<result column="JOIN_DATE" 	property="joinDate"/>
 	</resultMap>
 	
+	<!-- 회원등록 -->
 	<insert id="insertMember">
 		INSERT INTO BOOK_MEMBER (
 			ID
@@ -37,6 +38,7 @@
 		)
 	</insert>
 	
+	<!-- 로그인 -->
 	<select id="selectMember" resultMap="member">
 		SELECT
     		ID
@@ -45,6 +47,26 @@
 		FROM BOOK_MEMBER
 		WHERE ID = #{id}
 		AND PW = #{pw}
+	</select>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="selectMemberId" resultType="String">
+		SELECT ID
+		FROM BOOK_MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 회원 목록 조회 -->
+	<select id="selectMemberList" resultMap="member">
+		SELECT
+			ID
+			, NAME
+			, TELL
+			, ADDR
+			, GENDER
+			, JOIN_DATE
+		FROM BOOK_MEMBER
+		WHERE IS_ADMIN = 'N'	
 	</select>
 	
 </mapper>		

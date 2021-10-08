@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.shop.item.vo.CategoryVO;
 import com.spring.shop.item.vo.ItemVO;
@@ -47,12 +48,22 @@ public class ItemServiceImpl implements ItemService {
 		
 	}
 	
-	// 카테고리 삭제
+	// 카테고리 & 포함상품 삭제
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void deleteCate(CategoryVO categoryVO) {
 		
+		// 트랜잭션
 		sqlSession.delete("itemMapper.deleteCategoryItem", categoryVO);
 		sqlSession.delete("itemMapper.deleteCategory", categoryVO);
+		
+	}
+	
+	// 상품 삭제
+	@Override
+	public void deleteItem(ItemVO itemVO) {
+		
+		sqlSession.delete("itemMapper.deleteItem",itemVO);
 		
 	}
 

@@ -52,8 +52,10 @@
 	<!-- 카테고리 in 상품 삭제 -->
 	<delete id="deleteCategoryItem">
 		DELETE BOOK_ITEM
-		WHERE CATE_CODE = #{cateCode}
+		WHERE
+		CATE_CODE = #{cateCode}
 	</delete>	
+	
 	
 	<!-- 상품 등록 -->
 	<insert id="insertItem">
@@ -99,6 +101,13 @@
 		FROM BOOK_ITEM I
 		ORDER BY REG_DATE DESC
 	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteItem">
+		DELETE BOOK_ITEM
+		WHERE
+		ITEM_CODE = #{itemCode}
+	</delete>	
 	
 </mapper>		
 

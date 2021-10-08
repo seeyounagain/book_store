@@ -81,7 +81,7 @@ public class MemberVO {
 		return addrs;
 	}
 	public void setAddrs(String[] addrs) {
-		String addr = addrs[0] + " " + addrs[1];
+		String addr = addrs[0] + " " + addrs[1] + " " + addrs[2];
 		setAddr(addr);
 	}
 	

@@ -1,5 +1,7 @@
 package com.spring.shop.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,23 @@ public class MemberServiceImpl implements MemberService {
 		
 		return sqlSession.selectOne("memberMapper.selectMember",memberVO);
 		
+	}
+	
+	// 아이디 중복체크
+	@Override
+	public boolean selectMemberId(String id) {
+		
+		String result = sqlSession.selectOne("memberMapper.selectMemberId", id);
+		// true = 중복아이디존재 false = 아이디생성가능
+		return result == null ? false : true;
+		
+	}
+	
+	// 회원 목록 조회
+	@Override
+	public List<MemberVO> selectMemberList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

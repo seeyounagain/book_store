@@ -39,18 +39,6 @@ body {
 .nav-link {
 	color: black;
 }
-.btn-primary , .btn {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-.form-check-input:checked {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-.list-group-item.active {
-	background-color: steelblue;
-	border-color: steelblue;	
-}
 </style>
 </head>
 <body>

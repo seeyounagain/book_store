@@ -48,16 +48,16 @@
 			</div>
 			<div class="col-12 pt-1">
 				<label for="publisher" class="form-label">출간일</label>
-				<input type="date" class="form-control" name="pubDate." required>
+				<input type="date" class="form-control" name="pubDate" required>
 			</div>
 			<div class="row">
 			<div class="col-6 pt-1">
 				<label for="writer" class="form-label">쪽수</label>
-				<input type="text" class="form-control" name="page" required>
+				<input type="text" class="form-control" name="page">
 			</div>
 			<div class="col-6 pt-1">
 				<label for="writer" class="form-label">ISBN</label>
-				<input type="text" class="form-control" name="isbn">
+				<input type="text" class="form-control" name="isbn" required>
 			</div>
 			</div>
 			<div class="col-12 pt-1">

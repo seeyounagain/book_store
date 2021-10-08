@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.shop.member.service.MemberService;
 import com.spring.shop.member.vo.MemberVO;
@@ -59,9 +60,6 @@ public class MemberController {
 			if (loginInfo.getIsAdmin().equals("Y")) {
 				return "redirect:/admin/categoryManage";
 			}
-			/*
-			 * // 일반회원 로그인 시 else { return "redirect:/item/itemList"; }
-			 */
 			
 		}
 		
@@ -76,6 +74,15 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		
 		return "redirect:/item/itemList";
+		
+	}
+	
+	// 아이디중복체크
+	@ResponseBody
+	@PostMapping("/checkId")
+	public boolean checkIdAjax(String id) {
+		
+		return memberService.selectMemberId(id);
 		
 	}
 	

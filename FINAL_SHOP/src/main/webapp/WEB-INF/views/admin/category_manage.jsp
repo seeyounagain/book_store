@@ -10,11 +10,11 @@
 </head>
 <body>
 	<div class="row pl-5 justify-content-center">
-		<div class="col-10">
+		<div class="col-7">
 			<h1 class="display-6 mb-3 text-center">카테고리 관리</h1>
 			<hr class="mb-3">
 		</div>
-		<div class="col-5">
+		<div class="col-6">
 			<form action="/admin/regCate" method="post">
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">카테고리명</span>
@@ -24,7 +24,7 @@
 			</form>
 		</div>
 		
-		<div class="col-10">
+		<div class="col-7">
 			<table class="table table-striped table-hover caption-top">
 				
 				<colgroup>
@@ -49,7 +49,7 @@
 						<c:when test="${not empty list }">
 							<c:forEach var="list" items="${list }" varStatus="index">
 								<tr>
-									<th scope="row">${index.count }</th>
+									<td scope="row">${index.count }</td>
 									<td>${list.cateCode }</td>
 									<td>${list.cateName }</td>
 									<td><input class="btn btn-primary deleteBtn" type="button" value="삭제" data-code="${list.cateCode }"></td>

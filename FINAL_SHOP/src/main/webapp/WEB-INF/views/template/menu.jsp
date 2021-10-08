@@ -75,35 +75,21 @@
 			<ul class="nav justify-content-center">
 			<c:choose>
 				<c:when test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+					<c:forEach var="menu" items="${menuList }">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/item/itemList">홈</a>
+						<a class="nav-link active" href="/admin/${menu.menuUri }">${menu.menuName }</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="/admin/categoryManage">상품관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">회원관리</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">매출관리</a>
-					</li>
+					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/item/itemList">홈</a>
+						<a class="nav-link active" href="/item/itemList">홈</a>
 					</li>
+					<c:forEach var="category" items="${cateList }">
 					<li class="nav-item">
-						<a class="nav-link active" href="#">소설/에세이</a>
+						<a class="nav-link active" href="#">${category.cateName }</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">컴퓨터/IT</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">자기계발</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="#">인문학</a>
-					</li>
+					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			</ul>

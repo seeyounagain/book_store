@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
 <!-- reset css -->
-<link rel="stylesheet" href="/resources/common/css/reset.css?ver=8">
+<link rel="stylesheet" href="/resources/common/css/reset.css?ver=9">
 <!-- 제이쿼리 (부트스트랩 js 와 같은 문법을 사용하기 때문에 먼저 실행 되어야함) -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 부트스트랩 css -->
@@ -38,18 +38,6 @@ body {
 }
 .nav-link {
 	color: black;
-}
-.btn-primary , .btn {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-.form-check-input:checked {
-	background-color: steelblue;
-	border-color: steelblue;
-}
-.list-group-item.active {
-	background-color: steelblue;
-	border-color: steelblue;	
 }
 </style>
 </head>
