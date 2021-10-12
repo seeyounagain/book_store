@@ -58,7 +58,7 @@ public class MemberController {
 			
 			// 관리자 로그인 시
 			if (loginInfo.getIsAdmin().equals("Y")) {
-				return "redirect:/admin/categoryManage";
+				return "redirect:/admin/itemManage";
 			}
 			
 		}

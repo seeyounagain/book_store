@@ -57,7 +57,7 @@
 									<td>${item.writer }<c:if test="${not empty item.translator}"> / ${item.translator }</c:if></td>
 									<td>${item.publisher }</td>
 									<td><input class="btn btn-primary mx-1" type="button" value="수정">
-									<input class="btn btn-primary mx-1 deleteBtn" type="button" value="삭제" data-code="${item.itemCode }"></td>
+									<input class="btn btn-danger mx-1 deleteBtn" type="button" value="삭제" data-code="${item.itemCode }"></td>
 								</tr>
 							</c:forEach>
 						</c:when>

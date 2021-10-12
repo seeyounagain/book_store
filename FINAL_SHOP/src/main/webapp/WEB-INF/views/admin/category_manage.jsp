@@ -52,7 +52,7 @@
 									<td scope="row">${index.count }</td>
 									<td>${list.cateCode }</td>
 									<td>${list.cateName }</td>
-									<td><input class="btn btn-primary deleteBtn" type="button" value="삭제" data-code="${list.cateCode }"></td>
+									<td><input class="btn btn-danger deleteBtn" type="button" value="삭제" data-code="${list.cateCode }"></td>
 								</tr>
 							</c:forEach>
 						</c:when>

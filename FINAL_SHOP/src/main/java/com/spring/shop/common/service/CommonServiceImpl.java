@@ -27,7 +27,7 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<SideMenuVO> selectSideList(String menuCode) {
 		
-		return sqlSession.selectList("commonMapper.selectSideMenuList",menuCode);
+		return sqlSession.selectList("commonMapper.selectSideMenuList", menuCode);
 		
 	}
 	

@@ -87,7 +87,7 @@
 					</li>
 					<c:forEach var="category" items="${cateList }">
 					<li class="nav-item">
-						<a class="nav-link active" href="#">${category.cateName }</a>
+						<a class="nav-link active" href="/item/${category.cateCode }">${category.cateName }</a>
 					</li>
 					</c:forEach>
 				</c:otherwise>
