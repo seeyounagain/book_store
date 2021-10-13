@@ -23,6 +23,14 @@
 		<result column="CATE_CODE" 		property="cateCode"/>
 	</resultMap>
 	
+	<resultMap type="com.spring.shop.item.vo.ImgVO" id="img">
+		<id column="IMG_CODE" 				property="imgCode"/>
+		<result column="ORIGIN_IMG_NAME" 	property="originImgName"/>
+		<result column="ATTACHED_IMG_NAME" 	property="attachedImgName"/>
+		<result column="ITEM_CODE" 			property="itemCode"/>
+		<result column="IS_MAIN" 			property="isMain"/>
+	</resultMap>
+	
 	<!-- 카테고리 등록 -->
 	<insert id="insertCategory">
 		INSERT INTO ITEM_CATEGORY (
@@ -108,6 +116,31 @@
 		WHERE
 		ITEM_CODE = #{itemCode}
 	</delete>	
+	
+	<!-- 상품 이미지 코드 숫자 생성 -->
+	<select id="selectImgCodeNum" resultType="int">
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE,5,3))) + 1, 1) FROM BOOK_IMG
+	</select>
+	
+	<!-- 상품 이미지 정보 등록 INSERT & UNION ALL -->
+	<insert id="insertItemImg">
+		INSERT INTO BOOK_IMG (
+			IMG_CODE
+			, ORIGIN_IMG_NAME
+			, ATTACHED_IMG_NAME
+			, ITEM_CODE
+			, IS_MAIN
+		)
+		<foreach collection="imgList" item="imgVO" separator="UNION ALL">
+		SELECT
+			#{imgVO.imgCode}
+			, #{imgVO.originImgName}
+			, #{imgVO.attachedImgName}
+			, #{imgVO.itemCode}
+			, #{imgVO.isMain}
+		FROM DUAL
+		</foreach>
+	</insert>
 	
 </mapper>		
 

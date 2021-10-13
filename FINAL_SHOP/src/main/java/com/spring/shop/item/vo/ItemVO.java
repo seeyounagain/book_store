@@ -1,5 +1,7 @@
 package com.spring.shop.item.vo;
 
+import java.util.List;
+
 public class ItemVO {
 	
 	// 쇼핑몰 상품 테이블
@@ -19,6 +21,9 @@ public class ItemVO {
 	private String pubDate;
 	private String isbn;
 	private String page;
+	
+	private List<ImgVO> imgList;
+	
 	
 	public String getItemCode() {
 		return itemCode;
@@ -85,6 +90,12 @@ public class ItemVO {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	public List<ImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<ImgVO> imgList) {
+		this.imgList = imgList;
 	}
 	
 	

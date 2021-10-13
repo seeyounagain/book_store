@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.shop.item.vo.CategoryVO;
+import com.spring.shop.item.vo.ImgVO;
 import com.spring.shop.item.vo.ItemVO;
 
 @Service("itemService")
@@ -64,6 +65,22 @@ public class ItemServiceImpl implements ItemService {
 	public void deleteItem(ItemVO itemVO) {
 		
 		sqlSession.delete("itemMapper.deleteItem",itemVO);
+		
+	}
+	
+	// 상품 이미지 정보 등록
+	@Override
+	public void insertItemImgList(ItemVO itemVO) {
+		
+		sqlSession.insert("itemMapper.insertItemImg",itemVO);
+		
+	}
+	
+	// 상품 이미지 코드 숫자 생성
+	@Override
+	public int selectImgCodeNum() {
+		
+		return sqlSession.selectOne("itemMapper.selectImgCodeNum");
 		
 	}
 

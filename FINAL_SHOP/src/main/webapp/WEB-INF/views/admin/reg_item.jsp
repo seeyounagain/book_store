@@ -9,7 +9,7 @@
 </head>
 <body>
 	
-	<form action="/admin/regItem" method="post">
+	<form action="/admin/regItem" method="post" enctype="multipart/form-data">
 	<div class="row justify-content-center">
 		<div class="col-7">
 			<h1 class="display-6 mb-3 text-center">상품 등록</h1>
@@ -62,11 +62,11 @@
 			</div>
 			<div class="col-12 pt-1">
 				<label for="main" class="form-label">썸네일</label>
-				<input type="file" name="main" class="form-control" id="inputGroupFile01">
+				<input type="file" name="file" class="form-control" id="inputGroupFile01">
 			</div>
 			<div class="col-12 pt-1">
 				<label for="image" class="form-label">이미지</label>
-				<input type="file" name="image" class="form-control" id="inputGroupFile01">
+				<input type="file" name="files" class="form-control" id="inputGroupFile01" multiple>
 			</div>
 			<div class="d-grid pt-3">
 				<button type="submit" class="btn btn-primary" >상품등록</button>
