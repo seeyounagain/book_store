@@ -33,11 +33,19 @@ public class ItemServiceImpl implements ItemService {
 		
 	}
 	
-	// 상품 목록 조회
+	// 상품 목록 조회 (상품리스트)
 	@Override
-	public List<ItemVO> selectItemList() {
+	public List<ItemVO> selectItemListMain() {
 		
-		return sqlSession.selectList("itemMapper.selectItemList");
+		return sqlSession.selectList("itemMapper.selectItemListMain");
+		
+	}
+	
+	// 상품 목록 조회 (관리자)
+	@Override
+	public List<ItemVO> selectItemListManage() {
+	
+		return sqlSession.selectList("itemMapper.selectItemListManage");
 		
 	}
 	
@@ -83,5 +91,14 @@ public class ItemServiceImpl implements ItemService {
 		return sqlSession.selectOne("itemMapper.selectImgCodeNum");
 		
 	}
+	
+	// 상품 코드 생성
+	@Override
+	public String selectItemCode() {
+		
+		return sqlSession.selectOne("itemMapper.selectItemCode");
+		
+	}
+
 
 }

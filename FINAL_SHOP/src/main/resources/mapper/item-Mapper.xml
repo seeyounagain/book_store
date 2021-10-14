@@ -10,17 +10,21 @@
 	</resultMap>
 	
 	<resultMap type="com.spring.shop.item.vo.ItemVO" id="item">
-		<id column="ITEM_CODE" 			property="itemCode"/>
-		<result column="ITEM_NAME" 		property="itemName"/>
-		<result column="ITEM_PRICE" 	property="itemPrice"/>
-		<result column="WRITER" 		property="writer"/>
-		<result column="PUBLISHER" 		property="publisher"/>
-		<result column="TRANSLATOR" 	property="translator"/>
-		<result column="PUB_DATE" 		property="pubDate"/>
-		<result column="ISBN" 			property="isbn"/>
-		<result column="PAGE" 			property="page"/>
-		<result column="REG_DATE" 		property="regDate"/>
-		<result column="CATE_CODE" 		property="cateCode"/>
+		<id column="ITEM_CODE" 					property="itemCode"/>
+		<result column="ITEM_NAME" 				property="itemName"/>
+		<result column="ITEM_PRICE" 			property="itemPrice"/>
+		<result column="WRITER" 				property="writer"/>
+		<result column="PUBLISHER" 				property="publisher"/>
+		<result column="TRANSLATOR" 			property="translator"/>
+		<result column="PUB_DATE" 				property="pubDate"/>
+		<result column="ISBN" 					property="isbn"/>
+		<result column="PAGE" 					property="page"/>
+		<result column="REG_DATE" 				property="regDate"/>
+		<result column="CATE_CODE" 				property="cateCode"/>
+		<result column="CONTENT_TITLE" 			property="contentTitle"/>
+		<result column="CONTENT" 				property="content"/>
+		<result column="ATTACHED_IMG_NAME" 		property="attachedImgName"/>
+		<collection property="imgList" 			resultMap="img"></collection>
 	</resultMap>
 	
 	<resultMap type="com.spring.shop.item.vo.ImgVO" id="img">
@@ -78,8 +82,10 @@
 			, PAGE
 			, ISBN
 		    , CATE_CODE
+		    , CONTENT_TITLE
+		    , CONTENT
 		) VALUES (
-		    (SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE,6,3))),0) + 1,3,0) FROM BOOK_ITEM)
+		    #{itemCode}
 		    , #{itemName}
 		    , #{itemPrice}
 		    , #{writer}
@@ -89,21 +95,48 @@
 		    , #{page}
 		    , #{isbn}
 		    , #{cateCode}
+		    , #{contentTitle}
+		    , #{content}
 		)
 	</insert>
 	
-	<!-- 상품 목록 조회 -->
-	<select id="selectItemList" resultMap="item">
+	<!-- 상품 목록 조회 메인용 -->
+	<select id="selectItemListMain" resultMap="item">
 		SELECT
-    		ITEM_CODE
-    		, ITEM_NAME
-    		, ITEM_PRICE
-    		, WRITER
-    		, PUBLISHER
+			I.ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, WRITER
+			, PUBLISHER
     		, TRANSLATOR
-    		, (SELECT CATE_NAME FROM ITEM_CATEGORY WHERE CATE_CODE = I.CATE_CODE) AS CATE_CODE
-    		, REG_DATE
-    		, PUB_DATE
+			, (SELECT CATE_NAME FROM ITEM_CATEGORY WHERE CATE_CODE = I.CATE_CODE) AS CATE_CODE
+			, REG_DATE
+			, PUB_DATE
+			, CONTENT_TITLE
+			, PAGE
+			, ISBN
+			, IMG_CODE
+			, ATTACHED_IMG_NAME
+			, IS_MAIN
+		FROM BOOK_ITEM I, BOOK_IMG M
+		WHERE I.ITEM_CODE = M.ITEM_CODE
+		AND IS_MAIN = 'Y'
+		ORDER BY REG_DATE DESC
+	</select>
+	
+	<!-- 상품 목록 조회 관리용 -->
+	<select id="selectItemListManage" resultMap="item">
+		SELECT DISTINCT
+			ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, WRITER
+			, PUBLISHER
+    		, TRANSLATOR
+			, (SELECT CATE_NAME FROM ITEM_CATEGORY WHERE CATE_CODE = I.CATE_CODE) AS CATE_CODE
+			, REG_DATE
+			, PUB_DATE
+			, CONTENT_TITLE
 			, PAGE
 			, ISBN
 		FROM BOOK_ITEM I
@@ -120,6 +153,11 @@
 	<!-- 상품 이미지 코드 숫자 생성 -->
 	<select id="selectImgCodeNum" resultType="int">
 		SELECT NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE,5,3))) + 1, 1) FROM BOOK_IMG
+	</select>
+	
+	<!-- 상품 이미지에 넣을 아이템 코드 생성 -->
+	<select id="selectItemCode" resultType="String">
+		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE,6,3))),0) + 1,3,0) FROM BOOK_ITEM
 	</select>
 	
 	<!-- 상품 이미지 정보 등록 INSERT & UNION ALL -->

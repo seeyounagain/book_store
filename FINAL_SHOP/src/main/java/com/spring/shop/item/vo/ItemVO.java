@@ -21,9 +21,11 @@ public class ItemVO {
 	private String pubDate;
 	private String isbn;
 	private String page;
+	private String content;
+	private String contentTitle;
 	
 	private List<ImgVO> imgList;
-	
+	private String attachedImgName;
 	
 	public String getItemCode() {
 		return itemCode;
@@ -96,6 +98,24 @@ public class ItemVO {
 	}
 	public void setImgList(List<ImgVO> imgList) {
 		this.imgList = imgList;
+	}
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getContentTitle() {
+		return contentTitle;
+	}
+	public void setContentTitle(String contentTitle) {
+		this.contentTitle = contentTitle;
 	}
 	
 	

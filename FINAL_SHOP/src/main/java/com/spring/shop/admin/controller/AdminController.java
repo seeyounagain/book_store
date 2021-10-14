@@ -71,7 +71,7 @@ public class AdminController {
 	@GetMapping("/itemManage")
 	public String itemManage(Model model,SideMenuVO sideMenuVO) {
 		// 상품 목록 조회 -> 전달
-		model.addAttribute("list", itemService.selectItemList());
+		model.addAttribute("list", itemService.selectItemListManage());
 		// 메뉴 목록 조회 -> 전달
 		model.addAttribute("menuList",commonService.selectMenuList());
 		// 사이드 메뉴 목록 조회 -> 전달
@@ -91,18 +91,22 @@ public class AdminController {
 		Iterator<String> inputNames = multi.getFileNames(); // 첨부된 파일의 이름이 아닌 input 태그의 name 속성!!! 가져옴
 		
 		// 파일이 첨부될 경로 (끝에 \\ 있는지 체크!)
-		String uploadPath = "C:\\Users\\siyoon\\git\\book_store\\FINAL_SHOP\\src\\main\\webapp\\resources\\upload\\";
+		//String uploadPath = "C:\\Users\\siyoon\\git\\book_store\\FINAL_SHOP\\src\\main\\webapp\\resources\\upload\\";
+		String uploadPath = "D:\\myGit\\book_store\\FINAL_SHOP\\src\\main\\webapp\\resources\\upload\\";
 		
 		// imgVO 담을 리스트 생성
 		List<ImgVO> imgList = new ArrayList<>();
-
+		
+		// 상품 코드 생성
+		String itemCode = itemService.selectItemCode();
+		
+		// 다음에 올 이미지 코드 숫자 생성
+		int nextNum = itemService.selectImgCodeNum();
+		
 		// input file 태그의 갯수만큼 while
 		while (inputNames.hasNext()) {
 			
 			String inputName = inputNames.next();
-			
-			// 다음에 올 이미지 코드 숫자 생성
-			int nextNum = itemService.selectImgCodeNum();
 			
 			// 업로드한 원본 파일명
 			// file.getOriginalFilename();
@@ -115,9 +119,13 @@ public class AdminController {
 			// 반드시 예외 처리 해줘야 함
 			try {
 				
+					
 				// 다중 파일 업로드 시
 				// multiple 속성이 있는 input 태그의 name 속성이 "file2" 로 지정됨
 				if (inputName.equals("files")) {
+					
+					if (!multi.getFiles(inputName).equals("")) {
+						
 					// list로 첨부된 파일들 가져오기
 					List<MultipartFile> fileList = multi.getFiles(inputName);
 					
@@ -128,17 +136,20 @@ public class AdminController {
 						// 업로드 ex ) ~~~~\\resources\\upload\\2021101311425575_파일명.jpg
 						file.transferTo(new File(uploadPath + uploadFileName));
 						
-						String imgCode = String.format("%03d", nextNum++);
+						String imgCode = "IMG_" + String.format("%03d", nextNum++);
 						
-						imgList.add(new ImgVO(imgCode, file.getOriginalFilename(), uploadFileName, itemVO.getItemCode(), "N"));
-						
+						imgList.add(new ImgVO(imgCode, file.getOriginalFilename(), uploadFileName, itemCode, "N"));
 						
 					}
+					
+				}
 					
 				}
 				// 단일 업로드
 				else {
 					
+					if (!multi.getFile(inputName).equals("")) {
+						
 					// name 속성으로 input 태그에 첨부된 파일 가져오기
 					MultipartFile file = multi.getFile(inputName);
 					// 업로드 할 파일명 설정
@@ -148,8 +159,9 @@ public class AdminController {
 					
 					String imgCode = "IMG_" + String.format("%03d", nextNum++);
 					
-					imgList.add(new ImgVO(imgCode, file.getOriginalFilename(), uploadFileName, itemVO.getItemCode(), "Y"));
+					imgList.add(new ImgVO(imgCode, file.getOriginalFilename(), uploadFileName, itemCode, "Y"));
 					
+					}
 					
 				}
 				
@@ -162,6 +174,12 @@ public class AdminController {
 			}
 			
 		}
+		
+		// 이미지 정보 아이템에 넣기
+		itemVO.setImgList(imgList);
+		
+		// 아이템에 코드 넣기
+		itemVO.setItemCode(itemCode);
 		
 		// 상품 정보 INSERT
 		itemService.insertItem(itemVO);

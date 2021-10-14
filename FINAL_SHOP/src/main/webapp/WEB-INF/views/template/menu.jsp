@@ -67,7 +67,7 @@
 	</div>
 	<div class="row text-center pb-5">
 		<div class="col">
-			<div><img width="30px" src="/resources/img/book-shop.png">&nbsp;<div class="display-5">북적북적</div></div>
+			<div><img width="30px" src="/resources/img/book-shop.png" >&nbsp;<div class="display-5"><a href="/item/itemList" style="text-decoration: none;">북적북적</a></div></div>
 		</div>
 	</div>
 	<div class="row mb-5">
@@ -92,6 +92,9 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+					<li class="nav-item">
+						<a class="nav-link active" href="/common/boardList">게시판</a>
+					</li>
 			</ul>
 		</div>
 	</div>

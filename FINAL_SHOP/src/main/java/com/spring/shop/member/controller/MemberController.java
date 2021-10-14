@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.shop.common.service.CommonService;
+import com.spring.shop.item.service.ItemService;
 import com.spring.shop.member.service.MemberService;
 import com.spring.shop.member.vo.MemberVO;
 
@@ -19,6 +21,12 @@ public class MemberController {
 	
 	@Resource(name="memberService")
 	private MemberService memberService;
+	
+	@Resource(name="itemService")
+	private ItemService itemService;
+	
+	@Resource(name="commonService")
+	private CommonService commonService;
 	
 	// 회원가입 페이지로 이동
 	@GetMapping("/joinForm")
@@ -85,5 +93,6 @@ public class MemberController {
 		return memberService.selectMemberId(id);
 		
 	}
+
 	
 }

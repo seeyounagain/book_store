@@ -53,7 +53,7 @@
 			<div class="row">
 			<div class="col-6 pt-1">
 				<label for="writer" class="form-label">쪽수</label>
-				<input type="text" class="form-control" name="page">
+				<input type="text" class="form-control" name="page" placeholder="숫자만 입력해주세요">p
 			</div>
 			<div class="col-6 pt-1">
 				<label for="writer" class="form-label">ISBN</label>
@@ -67,6 +67,14 @@
 			<div class="col-12 pt-1">
 				<label for="image" class="form-label">이미지</label>
 				<input type="file" name="files" class="form-control" id="inputGroupFile01" multiple>
+			</div>
+			<div class="col-12 pt-1">
+				<label for="contentTitle" class="form-label">대표글</label>
+				<input type="text" class="form-control" name="contentTitle" placeholder="상품을 대표할 한 줄 입니다.">
+			</div>
+			<div class="col-12 pt-1">
+				<label for="content" class="form-label">소개글</label>
+				<textarea name="content" class="form-control" placeholder="상품의 소개글을 입력해주세요." style="height: 100px"></textarea>
 			</div>
 			<div class="d-grid pt-3">
 				<button type="submit" class="btn btn-primary" >상품등록</button>

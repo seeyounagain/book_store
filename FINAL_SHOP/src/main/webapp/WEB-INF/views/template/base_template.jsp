@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
 <!-- reset css -->
-<link rel="stylesheet" href="/resources/common/css/reset.css?ver=7">
+<link rel="stylesheet" href="/resources/common/css/reset.css?ver=9">
 <!-- 제이쿼리 (부트스트랩 js 와 같은 문법을 사용하기 때문에 먼저 실행 되어야함) -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 부트스트랩 css -->
@@ -38,6 +38,17 @@ body {
 }
 .nav-link {
 	color: black;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+a:hover , button:hover {
+	cursor: pointer;
 }
 </style>
 </head>
