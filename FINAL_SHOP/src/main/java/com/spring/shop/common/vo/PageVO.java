@@ -61,7 +61,7 @@ public class PageVO {
 		this.totalCnt = totalCnt;
 	}
 
-	public boolean isPrev() {
+	public boolean getPrev() {
 		return prev;
 	}
 
@@ -69,7 +69,7 @@ public class PageVO {
 		this.prev = prev;
 	}
 
-	public boolean isNext() {
+	public boolean getNext() {
 		return next;
 	}
 
@@ -84,6 +84,22 @@ public class PageVO {
 	public int getEndPage() {
 		return endPage;
 	}
+	public int getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
+
+	public int getEndNum() {
+		return endNum;
+	}
+
+	public void setEndNum(int endNum) {
+		this.endNum = endNum;
+	}
+	
 	
 	// 메소드 호출 시 페이징 처리의 모든 정보 셋팅
 	public void setPageInfo() {
@@ -115,6 +131,7 @@ public class PageVO {
 		// prev 버튼 유무 true = 유 / false = 무
 		// 시작 페이지가 1인 경우를 제외하고 보이도록 지정
 		prev = startPage == 1 ? false : true;
+		
 		
 	}
 	

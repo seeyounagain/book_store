@@ -8,6 +8,7 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private String createDate;
+	private String content;
 	
 	
 	public int getBoardNum() {
@@ -33,6 +34,12 @@ public class BoardVO {
 	}
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 }

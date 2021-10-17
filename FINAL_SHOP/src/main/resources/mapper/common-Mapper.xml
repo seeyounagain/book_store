@@ -46,6 +46,12 @@
 		ORDER BY SIDE_MENU_CODE
 	</select>
 	
+	<!-- 총 게시글 수 조회 -->
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(BOARD_NUM)
+		FROM BOOK_BOARD
+	</select>
+	
 	<!-- 게시글 목록 조회 -->
 	<select id="selectBoardList" resultMap="board">
 		SELECT ROW_NUM
@@ -68,7 +74,7 @@
 				FROM BOOK_BOARD
 				ORDER BY BOARD_NUM DESC)
 		)
-		WHERE ROW_NUM &gt;= 1 AND ROW_NUM &lt;= 11
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 </mapper>		

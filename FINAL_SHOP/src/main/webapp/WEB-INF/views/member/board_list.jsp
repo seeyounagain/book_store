@@ -11,15 +11,30 @@
 </head>
 <body>
 
-		<div class="row pl-5 justify-content-center">
+	<div class="row pl-5 justify-content-center">
 		<div class="col-7">
 			<h1 class="display-6 mb-3 text-center">게시판</h1>
 			<hr class="mb-3">
 		</div>
+		<div class="col-7">
+			<div class="row justify-content-center mb-2">
+				<div class="col-2">
+					<select class="form-select" name="searchKeyword">
+							<option value="TITLE">제목</option>
+							<option value="CONTENT">내용</option>
+							<option value="WRITER">작성자</option>
+					</select>
+				</div>
+				<div class="col-4">
+					<input type="text" class="form-control" name="searchValue" placeholder="검색어 입력">
+				</div>
+				<div class="col-1">
+					<button type="button" class="btn btn-secondary" >검색</button>
+				</div>
+			</div>
+		</div>
 		<div class="col-6">
 			<table class="table table-striped table-hover caption-top">
-				
-				<caption>${boardList.size() }개의 게시글이 있습니다.</caption>
 				
 				<colgroup>
 					<col width="10%">
@@ -57,7 +72,26 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="col-7">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item">
+					<a class="page-link" href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+					</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+					<a class="page-link" href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+					</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</div>
-
+	
 </body>
 </html>

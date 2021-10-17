@@ -8,8 +8,18 @@
 <meta charset="UTF-8">
 <title>FINAL_SHOP</title>
 <style type="text/css">
-.text-truncate:hover {
-	overflow: visible;
+.card {
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 1.5em;
+}
+.card:hover {
+    transform: scale(1.1);
+}
+.card-img-top {
+	height: 20rem;
 }
 </style>
 </head>
@@ -20,7 +30,7 @@
 	<c:when test="${not empty itemList }">
 		<c:forEach var="item" items="${itemList }">
 		<div class="col">
-			<div class="card" style="width: 18rem;">
+			<div class="card h-100" style="width: 16rem;">
 				<img src="/resources/upload/${item.attachedImgName }" class="card-img-top">
 				<div class="card-body">
 					<c:if test="${not empty item.contentTitle }">
