@@ -34,9 +34,17 @@ public class CommonServiceImpl implements CommonService {
 	
 	// 게시글 목록 조회
 	@Override
-	public List<BoardVO> selectBoardList() {
+	public List<BoardVO> selectBoardList(BoardVO boardVO) {
 		
-		return sqlSession.selectList("commonMapper.selectBoardList");
+		return sqlSession.selectList("commonMapper.selectBoardList", boardVO);
+		
+	}
+	
+	// 전체 게시글 갯수 조회
+	@Override
+	public int countBoard() {
+
+		return sqlSession.selectOne("commonMapper.countBoard");
 		
 	}
 	

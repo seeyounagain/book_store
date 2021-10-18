@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.shop.admin.service.AdminService;
 import com.spring.shop.common.service.CommonService;
+import com.spring.shop.common.vo.BoardVO;
 import com.spring.shop.item.service.ItemService;
 
 @Controller
@@ -26,12 +27,17 @@ public class CommonController {
 	
 	
 	// 게시판 목록으로 이동
-	@GetMapping("/boardList")
-	public String boardList(Model model) {
+	@RequestMapping("/boardList")
+	public String boardList(Model model,BoardVO boardVO) {
+		
+		int totalCnt = commonService.countBoard();
+		
+		boardVO.setTotalCnt(totalCnt);
+		boardVO.setPageInfo();
 		
 		model.addAttribute("cateList",itemService.selectCateList());
 		model.addAttribute("menuList",commonService.selectMenuList());
-		model.addAttribute("boardList",commonService.selectBoardList());
+		model.addAttribute("boardList",commonService.selectBoardList(boardVO));
 		
 		return "member/board_list";
 		

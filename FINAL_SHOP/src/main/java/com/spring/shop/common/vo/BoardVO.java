@@ -1,6 +1,6 @@
 package com.spring.shop.common.vo;
 
-public class BoardVO {
+public class BoardVO extends PageVO {
 	
 	// BOARD_NUM TITLE WRITER CREATE_DATE
 	

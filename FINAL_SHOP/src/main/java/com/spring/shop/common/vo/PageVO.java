@@ -1,6 +1,6 @@
 package com.spring.shop.common.vo;
 
-public class PageVO {
+public class PageVO extends SearchVO {
 	
 	// 페이징 처리를 위한 VO
 	
@@ -41,7 +41,7 @@ public class PageVO {
 	// 1페이지 부터 시작, 글 10개씩 5페이지씩 보여주기로 기본값 설정
 	public PageVO() {
 		nowPage = 1;
-		displayCnt = 10;
+		displayCnt = 5;
 		displayPageCnt = 5;
 	}
 
@@ -88,16 +88,16 @@ public class PageVO {
 		return startNum;
 	}
 
-	public void setStartNum(int startNum) {
-		this.startNum = startNum;
+	public void setStartNum() {
+		this.startNum = (nowPage - 1) * displayCnt + 1;
 	}
 
 	public int getEndNum() {
 		return endNum;
 	}
 
-	public void setEndNum(int endNum) {
-		this.endNum = endNum;
+	public void setEndNum() {
+		this.endNum = nowPage * displayCnt;
 	}
 	
 	
@@ -132,6 +132,8 @@ public class PageVO {
 		// 시작 페이지가 1인 경우를 제외하고 보이도록 지정
 		prev = startPage == 1 ? false : true;
 		
+		setStartNum();
+		setEndNum();
 		
 	}
 	
