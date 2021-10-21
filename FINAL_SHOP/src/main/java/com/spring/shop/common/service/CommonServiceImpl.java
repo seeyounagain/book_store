@@ -42,9 +42,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	// 전체 게시글 갯수 조회
 	@Override
-	public int countBoard() {
+	public int countBoard(BoardVO boardVO) {
 
-		return sqlSession.selectOne("commonMapper.countBoard");
+		return sqlSession.selectOne("commonMapper.countBoard",boardVO);
 		
 	}
 	

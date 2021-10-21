@@ -30,7 +30,7 @@ public class CommonController {
 	@RequestMapping("/boardList")
 	public String boardList(Model model,BoardVO boardVO) {
 		
-		int totalCnt = commonService.countBoard();
+		int totalCnt = commonService.countBoard(boardVO);
 		
 		boardVO.setTotalCnt(totalCnt);
 		boardVO.setPageInfo();

@@ -9,10 +9,14 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/resources/member/js/member_join_form.js?ver=28" ></script>
 <style type="text/css">
-.nowPage {
+.page-link {
+	color: black;
+}
+.page-item.active .page-link {
+    z-index: 3;
 	background-color: #6c757d;
 	color: white;
-}
+    border-color: #6c757d;
 </style>
 </head>
 <body>
@@ -27,13 +31,14 @@
 			<div class="row justify-content-center mb-2">
 				<div class="col-2">
 					<select class="form-select" name="searchKeyword">
-							<option value="TITLE">제목</option>
-							<option value="CONTENT">내용</option>
-							<option value="WRITER">작성자</option>
+							<option value="ALL" <c:if test="${empty boardVO.searchKeyword }">selected</c:if> >전체</option>
+							<option value="TITLE" <c:if test="${boardVO.searchKeyword eq 'TITLE' }">selected</c:if>  >제목</option>
+							<option value="CONTENT" <c:if test="${boardVO.searchKeyword eq 'CONTENT' }">selected</c:if> >내용</option>
+							<option value="WRITER" <c:if test="${boardVO.searchKeyword eq 'WRITER' }">selected</c:if> >작성자</option>
 					</select>
 				</div>
 				<div class="col-4">
-					<input type="text" class="form-control" name="searchValue" placeholder="검색어 입력">
+					<input type="text" class="form-control" name="searchValue" value="${boardVO.searchValue}"  placeholder="검색어 입력">
 				</div>
 				<div class="col-1">
 					<button type="submit" class="btn btn-secondary" >검색</button>
@@ -50,6 +55,16 @@
 					<col width="25%">
 					<col width="25%">
 				</colgroup>
+				
+				<c:if test="${not empty boardVO.searchValue}">
+				<caption>
+				'
+				<c:if test="${boardVO.searchKeyword eq 'TITLE'}">제목</c:if> <c:if test="${boardVO.searchKeyword eq 'WRITER'}">작성자</c:if>
+				<c:if test="${boardVO.searchKeyword eq 'CONTENT'}">내용</c:if>
+				'
+				, '${boardVO.searchValue}' 의 검색결과
+				</caption>
+				</c:if>
 				
 				<thead>
 					<tr>
@@ -73,7 +88,7 @@
 						</c:when>
 						<c:otherwise>
 								<tr style="text-align: center;">
-									<td colspan="4">게시글을 작성해주세요.</td>
+									<td colspan="4">게시글이 없습니다.</td>
 								</tr>
 						</c:otherwise>
 					</c:choose>
@@ -85,17 +100,19 @@
 				<ul class="pagination justify-content-center">
 				 <c:if test="${boardVO.prev }">
 					<li class="page-item">
-					<a class="page-link" href="/common/boardList?nowPage=${boardVO.startPage - 1 }" aria-label="Previous">
+					<a class="page-link" href="/common/boardList?nowPage=${boardVO.startPage - 1 }&searchKeyword=${boardVO.searchKeyword}&searchValue=${boardVO.searchValue}" aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span>
 					</a>
 					</li>
 				 </c:if> 
 					<c:forEach var="pageNum" begin="${boardVO.startPage }" end="${boardVO.endPage }">
-						<li class="page-item <c:if test="${boardVO.nowPage eq pageNum } ">nowPage</c:if> "><a class="page-link" href="/common/boardList?nowPage=${pageNum }">${pageNum }</a></li>
+						<li class="page-item  <c:if test="${boardVO.nowPage eq pageNum }">active</c:if>  ">
+						<a class="page-link" href="/common/boardList?nowPage=${pageNum }&searchKeyword=${boardVO.searchKeyword}&searchValue=${boardVO.searchValue}">${pageNum }</a>
+						</li>
 					</c:forEach>
 				<c:if test="${boardVO.next }">
 					<li class="page-item">
-					<a class="page-link" href="/common/boardList?nowPage=${boardVO.endPage + 1 }" aria-label="Next">
+					<a class="page-link" href="/common/boardList?nowPage=${boardVO.endPage + 1 }&searchKeyword=${boardVO.searchKeyword}&searchValue=${boardVO.searchValue}" aria-label="Next">
 					<span aria-hidden="true">&raquo;</span>
 					</a>
 					</li>
