@@ -40,4 +40,17 @@
 	
 	<context:component-scan base-package="com.spring.shop.*.controller" />
 	
+	<beans:bean id="menuInterceptor" class="com.spring.shop.common.util.MenuInterceptor" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/categoryManage"/>
+			<mapping path="/admin/regItem"/>
+			<mapping path="/admin/itemManage"/>
+			<mapping path="/admin/memberList"/>
+			<mapping path="/admin/memberManage"/>
+			<beans:ref bean="menuInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

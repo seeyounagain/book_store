@@ -12,7 +12,7 @@ public interface CommonService {
 	List<MenuVO> selectMenuList();
 	
 	// 사이드 메뉴 목록 조회
-	List<SideMenuVO> selectSideList(String menuCode);
+	List<SideMenuVO> selectSideList(MenuVO menuVO);
 	
 	// 전체 게시글 갯수 조회
 	int countBoard(BoardVO boardVO);

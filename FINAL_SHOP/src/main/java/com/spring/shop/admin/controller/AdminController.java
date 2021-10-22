@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -41,11 +42,11 @@ public class AdminController {
 	
 	// 카테고리 관리 페이지로 이동
 	@GetMapping("/categoryManage")
-	public String categoryManage(Model model, MenuVO menuVO, SideMenuVO sideMenuVO) {
+	public String categoryManage(Model model, MenuVO menuVO) {
 		
 		model.addAttribute("list",itemService.selectCateList());
-		model.addAttribute("menuList",commonService.selectMenuList());
-		model.addAttribute("sideMenuList",commonService.selectSideList("MENU_001"));
+		//model.addAttribute("menuList",commonService.selectMenuList());
+		//model.addAttribute("sideMenuList",commonService.selectSideList(menuCode));
 		
 		model.addAttribute("sidePage","categoryManage");
 		
@@ -55,11 +56,11 @@ public class AdminController {
 	
 	// 상품등록 페이지로 이동
 	@GetMapping("/regItem")
-	public String regItem(Model model,SideMenuVO sideMenuVO) {
+	public String regItem(Model model, MenuVO menuVO) {
 		
 		model.addAttribute("list",itemService.selectCateList());
-		model.addAttribute("menuList",commonService.selectMenuList());
-		model.addAttribute("sideMenuList",commonService.selectSideList("MENU_001"));
+		//model.addAttribute("menuList",commonService.selectMenuList());
+		//model.addAttribute("sideMenuList",commonService.selectSideList(menuCode));
 		
 		model.addAttribute("sidePage","regItem");
 		
@@ -69,13 +70,13 @@ public class AdminController {
 	
 	// 상품관리 페이지로 이동
 	@GetMapping("/itemManage")
-	public String itemManage(Model model,SideMenuVO sideMenuVO) {
+	public String itemManage(Model model, MenuVO menuVO) {
 		// 상품 목록 조회 -> 전달
 		model.addAttribute("list", itemService.selectItemListManage());
 		// 메뉴 목록 조회 -> 전달
-		model.addAttribute("menuList",commonService.selectMenuList());
+		//model.addAttribute("menuList",commonService.selectMenuList());
 		// 사이드 메뉴 목록 조회 -> 전달
-		model.addAttribute("sideMenuList",commonService.selectSideList("MENU_001"));
+		//model.addAttribute("sideMenuList",commonService.selectSideList(menuCode));
 		
 		model.addAttribute("sidePage","itemManage");
 		
@@ -223,10 +224,10 @@ public class AdminController {
 	
 	// 회원 조회 페이지로 이동
 	@GetMapping("/memberList")
-	public String selectMemberList(Model model,SideMenuVO sideMenuVO) {
+	public String selectMemberList(Model model, MenuVO menuVO) {
 		
-		model.addAttribute("menuList",commonService.selectMenuList());
-		model.addAttribute("sideMenuList",commonService.selectSideList("MENU_002"));
+		//model.addAttribute("menuList",commonService.selectMenuList());
+		//model.addAttribute("sideMenuList",commonService.selectSideList(menuCode));
 		
 		model.addAttribute("sidePage","memberList");
 		
@@ -236,10 +237,10 @@ public class AdminController {
 	
 	// 회원 관리 페이지로 이동
 	@GetMapping("/memberManage")
-	public String manageMember(Model model,SideMenuVO sideMenuVO) {
+	public String manageMember(Model model, MenuVO menuVO) {
 		
-		model.addAttribute("menuList",commonService.selectMenuList());
-		model.addAttribute("sideMenuList",commonService.selectSideList("MENU_002"));
+		//model.addAttribute("menuList",commonService.selectMenuList());
+		//model.addAttribute("sideMenuList",commonService.selectSideList(menuCode));
 		
 		model.addAttribute("sidePage","memberManage");
 		

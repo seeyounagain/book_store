@@ -77,7 +77,7 @@
 				<c:when test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
 					<c:forEach var="menu" items="${menuList }">
 					<li class="nav-item">
-						<a class="nav-link active" href="/admin/${menu.menuUri }">${menu.menuName }</a>
+						<a class="nav-link active" href="/admin/${menu.menuUri }?menuCode=${menu.menuCode}">${menu.menuName }</a>
 					</li>
 					</c:forEach>
 				</c:when>
